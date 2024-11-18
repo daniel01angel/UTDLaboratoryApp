@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -37,7 +38,15 @@ fun SecondScreen(onExitClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFFF6600)), // Fondo naranja
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color(0xFFFF8C42), // Naranja más claro arriba
+                        Color(0xFFFF6B35), // Naranja medio
+                        Color(0xFFFF4800)  // Naranja más oscuro abajo
+                    )
+                )
+            ), // Fondo naranja
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -62,9 +71,10 @@ fun SecondScreen(onExitClick: () -> Unit) {
             // Botón para "Laboratory Materials"
             CustomButton(
                 iconResId = R.drawable.laboratory_materials_icon,
-                text = "Laboratory Materials",
+                text = "Visual laboratory",
                 onClick = {
-                    // Acción específica para Laboratory Materials
+                    val intent = Intent(context, LasboratoryMaterials::class.java)
+                    context.startActivity(intent)
                 }
             )
 
@@ -73,8 +83,10 @@ fun SecondScreen(onExitClick: () -> Unit) {
             // Botón para "Support Videos"
             CustomButton(
                 iconResId = R.drawable.support_videos_icon,
-                text = "Support Videos",
+                text = "Developers",
                 onClick = {
+                    val intent = Intent(context, Developers::class.java)
+                    context.startActivity(intent)
                     // Acción específica para Support Videos
                 }
             )

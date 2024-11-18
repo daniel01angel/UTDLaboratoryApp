@@ -14,7 +14,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,14 +41,36 @@ fun MainScreen(onStartClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFFF6600)) // Fondo naranja
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color(0xFFFF8C42), // Naranja más claro arriba
+                        Color(0xFFFF6B35), // Naranja medio
+                        Color(0xFFFF4800)  // Naranja más oscuro abajo
+                    )
+                )
+            )
     ) {
+        // Título en la parte superior
+        Text(
+            text = "UTD Laboratory",
+            fontSize = 36.sp,
+            fontWeight = FontWeight.Bold,
+            fontStyle = FontStyle.Italic,
+            fontFamily = FontFamily.Cursive,
+            color = Color.White,
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 32.dp)
+        )
+
+        // Contenido central
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally // Alinea toda la columna al centro
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Logos de las universidades
             Row(
@@ -53,14 +78,14 @@ fun MainScreen(onStartClick: () -> Unit) {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.utd_logo), // Asegúrate de agregar las imágenes al directorio 'res/drawable'
+                    painter = painterResource(id = R.drawable.utd_logo),
                     contentDescription = "UTD Logo",
-                    modifier = Modifier.size(100.dp)
+                    modifier = Modifier.size(180.dp)
                 )
                 Image(
                     painter = painterResource(id = R.drawable.ucatolica_logo),
                     contentDescription = "UCatólica Logo",
-                    modifier = Modifier.size(100.dp)
+                    modifier = Modifier.size(180.dp)
                 )
             }
 
@@ -71,12 +96,7 @@ fun MainScreen(onStartClick: () -> Unit) {
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "Welcome to UTDlaboratory application!",
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
-                )
+
             }
 
             Spacer(modifier = Modifier.height(32.dp))
@@ -84,7 +104,7 @@ fun MainScreen(onStartClick: () -> Unit) {
             // Botón de inicio
             Button(
                 onClick = onStartClick,
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)) // Color verde
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50))
             ) {
                 Text(text = "START", fontSize = 20.sp, color = Color.White)
             }

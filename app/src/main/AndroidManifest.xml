@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UTDLaboratoryApp"
         tools:targetApi="31">
+
         <activity
             android:name=".AndroidPdfViewer"
             android:exported="false" />
@@ -31,10 +32,18 @@
             android:theme="@style/Theme.UTDLaboratoryApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Agregar la actividad LasboratoryMaterials -->
+        <activity
+            android:name=".LasboratoryMaterials"
+            android:exported="true" /> <!-- Puedes ajustar exported según tus necesidades -->
+        <activity
+            android:name=".Developers"
+            android:exported="true" /> <!-- Puedes ajustar exported según tus necesidades -->
+
     </application>
 
 </manifest>

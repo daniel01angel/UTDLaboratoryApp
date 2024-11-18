@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -54,7 +55,15 @@ fun LaboratorySpecificationsScreen(onBackClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFFF6600))
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color(0xFFFF8C42), // Naranja más claro arriba
+                        Color(0xFFFF6B35), // Naranja medio
+                        Color(0xFFFF4800)  // Naranja más oscuro abajo
+                    )
+                )
+            )
             .padding(16.dp)
     ) {
         Column {
