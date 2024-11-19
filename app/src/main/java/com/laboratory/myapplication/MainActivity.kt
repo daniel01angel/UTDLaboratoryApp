@@ -44,9 +44,9 @@ fun MainScreen(onStartClick: () -> Unit) {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFFF8C42), // Naranja más claro arriba
-                        Color(0xFFFF6B35), // Naranja medio
-                        Color(0xFFFF4800)  // Naranja más oscuro abajo
+                        Color(0xFFFFF8DC), // Cream color más claro
+                        Color(0xFFFFEBCD), // Cream color medio
+                        Color(0xFFFFE4B5)  // Cream color más oscuro
                     )
                 )
             )
@@ -54,14 +54,14 @@ fun MainScreen(onStartClick: () -> Unit) {
         // Título en la parte superior
         Text(
             text = "UTD Laboratory",
-            fontSize = 36.sp,
+            fontSize = 50.sp,
             fontWeight = FontWeight.Bold,
             fontStyle = FontStyle.Italic,
             fontFamily = FontFamily.Cursive,
-            color = Color.White,
+            color = Color(0xFFFF5722),
             modifier = Modifier
                 .align(Alignment.TopCenter)
-                .padding(top = 32.dp)
+                .padding(top = 100.dp)
         )
 
         // Contenido central

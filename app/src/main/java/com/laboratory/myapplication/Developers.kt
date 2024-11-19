@@ -8,6 +8,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -51,15 +52,15 @@ class Developers : ComponentActivity() {
 
 @Composable
 fun DevelopersScreen(onBackClick: () -> Unit) {
+    val context = LocalContext.current
     val developers = listOf(
-        Developer(R.drawable.medidor1, "Jasmine", "University of Texas at Dallas", "Ingeniería en Sistemas"),
+        Developer(R.drawable.fotojasmin, "Jasmine Flores", "University of Texas at Dallas", "Biomedical Engineering"),
+        Developer(R.drawable.fotogeoff, "Geoff Daniel", "University of Texas at Dallas", "Biomedical Engineering"),
         Developer(R.drawable.fotojustin, "Justin Dao", "University of Texas at Dallas", "Biomedical Engineering"),
         Developer(R.drawable.fotomaurya, "Maurya Gowda", "University of Texas at Dallas", "Biomedical Engineering"),
-        Developer(R.drawable.fotoemer, "Emerson Steven Toledo Becerra", "Universidad Catolica de Colombia", "Engineer Systems "),
+        Developer(R.drawable.fotoemer, "Emerson Toledo", "Universidad Catolica de Colombia", "Engineer Systems "),
         Developer(R.drawable.fotoangel, "Daniel Angel", "Universidad Catolica de Colombia", "Engineer Systems"),
-        Developer(R.drawable.medidor1, "Santigo Mendoza", "Universidad Catolica de Colombia", "Engineer Systems"),
-
-
+        Developer(R.drawable.fotosantiago, "Santigo Mendoza", "Universidad Catolica de Colombia", "Engineer Systems"),
     )
 
     Box(
@@ -68,15 +69,14 @@ fun DevelopersScreen(onBackClick: () -> Unit) {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFFF8C42), // Naranja más claro arriba
-                        Color(0xFFFF6B35), // Naranja medio
-                        Color(0xFFFF4800)  // Naranja más oscuro abajo
+                        Color(0xFFFFF8DC),
+                        Color(0xFFFFEBCD),
+                        Color(0xFFFFE4B5)
                     )
                 )
             )
             .padding(16.dp)
     ) {
-        // Botón de regreso en la parte superior
         IconButton(
             onClick = onBackClick,
             modifier = Modifier
@@ -90,57 +90,94 @@ fun DevelopersScreen(onBackClick: () -> Unit) {
             )
         }
 
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 60.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+        Column(
+            modifier = Modifier.fillMaxSize()
         ) {
-            items(developers) { developer ->
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
-                    elevation = CardDefaults.cardElevation(4.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.Transparent),
-                    border = androidx.compose.foundation.BorderStroke(1.dp, Color.Black)
-                ) {
-                    Row(
+            LazyColumn(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(top = 60.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                items(developers) { developer ->
+                    Card(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                            .padding(horizontal = 8.dp),
+                        elevation = CardDefaults.cardElevation(8.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color(0xFFFFDAB9)
+                        ),
+                        shape = RoundedCornerShape(16.dp)
                     ) {
-                        Image(
-                            painter = painterResource(id = developer.imageId),
-                            contentDescription = "Developer photo",
+                        Row(
                             modifier = Modifier
-                                .size(120.dp)
-                                .clip(CircleShape)
-                        )
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Image(
+                                painter = painterResource(id = developer.imageId),
+                                contentDescription = "Developer photo",
+                                modifier = Modifier
+                                    .size(120.dp)
+                                    .clip(CircleShape)
+                            )
 
-                        Spacer(modifier = Modifier.width(16.dp))
+                            Spacer(modifier = Modifier.width(16.dp))
 
-                        Column {
-                            Text(
-                                text = developer.name,
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black
-                            )
-                            Text(
-                                text = developer.university,
-                                fontSize = 14.sp,
-                                color = Color.White
-                            )
-                            Text(
-                                text = developer.career,
-                                fontSize = 14.sp,
-                                color = Color.White
-                            )
+                            Column {
+                                Text(
+                                    text = developer.name,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = developer.university,
+                                    fontSize = 16.sp,
+                                    color = Color.DarkGray
+                                )
+                                Text(
+                                    text = developer.career,
+                                    fontSize = 16.sp,
+                                    color = Color.DarkGray
+                                )
+                            }
                         }
                     }
                 }
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.utd_logo),
+                    contentDescription = "Logo 1",
+                    modifier = Modifier
+                        .size(100.dp)
+                        .clickable {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.utdallas.edu/"))
+                            context.startActivity(intent)
+                        }
+                )
+
+                Image(
+                    painter = painterResource(id = R.drawable.ucatolica_logo),
+                    contentDescription = "Logo 2",
+                    modifier = Modifier
+                        .size(100.dp)
+                        .clickable {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.ucatolica.edu.co/portal/"))
+                            context.startActivity(intent)
+                        }
+                )
             }
         }
     }

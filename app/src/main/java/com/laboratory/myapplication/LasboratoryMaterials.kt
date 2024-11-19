@@ -50,9 +50,9 @@ fun LasboratoryMaterialsScreen(onBackClick: () -> Unit) {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFFF8C42), // Naranja más claro arriba
-                        Color(0xFFFF6B35), // Naranja medio
-                        Color(0xFFFF4800)  // Naranja más oscuro abajo
+                        Color(0xFFFFF8DC), // Cream color más claro
+                        Color(0xFFFFEBCD), // Cream color medio
+                        Color(0xFFFFE4B5)  // Cream color más oscuro
                     )
                 )
             )
