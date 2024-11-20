@@ -19,9 +19,7 @@
         <activity
             android:name=".LaboratorySpecificationsActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.theme.LaboratorySpecificationsActivity"
-            android:exported="false" />
+        <!-- Eliminada la actividad duplicada -->
         <activity
             android:name=".SecondActivity"
             android:exported="false" />
@@ -43,6 +41,16 @@
         <activity
             android:name=".Developers"
             android:exported="true" /> <!-- Puedes ajustar exported según tus necesidades -->
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.laboratory.myapplication.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
     </application>
 
